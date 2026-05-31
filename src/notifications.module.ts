@@ -25,4 +25,4 @@ import { NotificationsGateway } from './notifications.gateway';
   controllers: [NotificationsController, NotificationsListener],
   providers: [NotificationsService, NotificationsGateway, JwtStrategy],
 })
-export class AppModule {}
+export class NotificationsModule {}

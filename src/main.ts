@@ -2,10 +2,10 @@ import 'dotenv/config';
 import { NestFactory } from '@nestjs/core';
 import type { MicroserviceOptions } from '@nestjs/microservices';
 import { Transport } from '@nestjs/microservices';
-import { AppModule } from './app.module';
+import { NotificationsModule } from './notifications.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(NotificationsModule);
 
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.KAFKA,
