@@ -22,7 +22,7 @@ import { NotificationsGateway } from './notifications.gateway';
       }),
     }),
   ],
-  controllers: [NotificationsController],
-  providers: [NotificationsService, NotificationsListener, NotificationsGateway, JwtStrategy],
+  controllers: [NotificationsController, NotificationsListener],
+  providers: [NotificationsService, NotificationsGateway, JwtStrategy],
 })
 export class AppModule {}
