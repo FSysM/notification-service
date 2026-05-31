@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client"
+  output   = "generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+model Notification {
+  id      String           @id @default(uuid())
+  type    NotificationType
+  message String
+  read    Boolean          @default(false)
+
+  entityType String?
+  entityId   String?
+
+  recipientId String
+
+  createdAt DateTime @default(now())
+}
+
+enum NotificationType {
+  SUBMISSION_APPROVED
+  SUBMISSION_REJECTED
+  SUBMISSION_SUBMITTED
+  SUBMISSION_EDITED
+  SUBMISSION_DELETED
+  SUBMISSION_OPPONENT_ASSIGNED
+
+  ASSIGNMENT_PICKED
+  ASSIGNMENT_UNPICKED
+
+  REVIEW_CREATED
+  REVIEW_EDITED
+  REVIEW_DELETED
+
+  FILE_MAIN_UPLOADED
+  FILE_ATTACHMENT_UPLOADED
+  FILE_UPLOADED
+  FILE_MAIN_EDITED
+  FILE_ATTACHMENT_EDITED
+  FILE_EDITED
+  FILE_MAIN_DELETED
+  FILE_ATTACHMENT_DELETED
+  FILE_DELETED
+}
