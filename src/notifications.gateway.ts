@@ -18,6 +18,10 @@ export type NotificationEmitPayload = {
   createdAt: Date;
 };
 
+export type DataSyncPayload = {
+  queryKey: string[];
+};
+
 @WebSocketGateway({
   namespace: '/notifications',
   cors: { origin: process.env.FRONTEND_URL ?? '*' },
@@ -76,5 +80,9 @@ export class NotificationsGateway
     const sockets = await this.server.in(room).fetchSockets();
     this.logger.log(`emitToUser → room=${room}, sockets in room=${sockets.length}`);
     this.server.to(room).emit('notification', data);
+  }
+
+  emitToAll(data: DataSyncPayload) {
+    this.server.emit('data-sync', data);
   }
 }
